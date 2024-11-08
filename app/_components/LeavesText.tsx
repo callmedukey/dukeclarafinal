@@ -21,6 +21,7 @@ const LeavesText = ({
       <Image
         src={LeavesOne}
         priority
+        quality={100}
         alt="Leaves"
         width={150}
         height={150}

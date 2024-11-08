@@ -1,7 +1,5 @@
 import Image from "next/image";
 
-import HeaderLinks from "@/components/HeaderLinks";
-import MobileMenu from "@/components/MobileMenu";
 import ChurchImage from "@/public/images/church.png";
 import FirstImage from "@/public/images/first-image.png";
 import InvertedLeavesOne from "@/public/leaves/inverted-leaf-1.svg";
@@ -20,13 +18,6 @@ import PresentForm from "./_components/PresentForm";
 export default function Home() {
   return (
     <main className="text-[#555353]">
-      <header className="bg-primary-two">
-        <div className="flex items-center justify-start xl:justify-center">
-          <LeavesText text="JHMC" id="home" />
-          <MobileMenu />
-        </div>
-        <HeaderLinks />
-      </header>
       <article className="gradient-white-transparent relative isolate min-h-[min(80vh,60rem)] w-full text-[#3D3D3D]">
         <Image
           src={FirstImage}

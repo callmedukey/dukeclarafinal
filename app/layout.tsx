@@ -3,6 +3,8 @@ import { Inter, Poppins, Gowun_Batang as GowunBatang } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "sonner";
 
+import Header from "./_components/Header";
+
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
@@ -35,6 +37,7 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${poppins.variable} ${gowunBatang.variable} antialiased`}
       >
+        <Header />
         {children}
         <Toaster position="bottom-center" richColors />
       </body>
