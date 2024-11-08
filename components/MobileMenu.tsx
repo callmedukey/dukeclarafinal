@@ -6,6 +6,7 @@ import { useState } from "react";
 
 import {
   Drawer,
+  DrawerClose,
   DrawerContent,
   DrawerTitle,
   DrawerTrigger,
@@ -33,11 +34,8 @@ const MobileMenu = () => {
               href={`#${link.url}`}
               key={link.label}
               className="text-left font-inter text-[1.5rem] font-light"
-              onClick={() => {
-                setOpen(false);
-              }}
             >
-              {link.label}
+              <DrawerClose>{link.label}</DrawerClose>
             </Link>
           ))}
         </nav>

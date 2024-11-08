@@ -17,12 +17,12 @@ const HeaderLinks = ({ isMobile = false }: { isMobile?: boolean }) => {
     <nav
       className={cn(
         "items-center gap-8 justify-center pb-6",
-        isMobile ? "flex" : "hidden xl:flex"
+        isMobile ? "flex" : "hidden md:flex"
       )}
     >
       {links.map((link) => (
         <Link
-          href={`#${link.url}`}
+          href={link.url}
           key={link.label}
           className="font-inter text-[1.5rem] font-light"
         >

@@ -66,10 +66,10 @@ const list: string[] = [];
   "Mariana Chaves",
   "Cristina Chaves",
   "Sônia Chaves",
-  "Gilka",
+  "Gilka Conceição Xavier da Silveira",
   "Hiandra Pinheiro",
   "Gabriel Molina",
-  "Virginia",
+  "Virgínia Garrido",
 ].forEach((str) => {
   const lowerCased = str.toLowerCase();
   list.push(lowerCased);
