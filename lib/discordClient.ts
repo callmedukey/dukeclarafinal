@@ -11,7 +11,7 @@ export class DiscordClient {
 
   constructor() {
     this.rest = new REST({ version: "10" }).setToken(
-      process.env.DISCORD_TOKEN ?? ""
+      process.env.DISCORD_BOT_TOKEN ?? ""
     );
   }
 
