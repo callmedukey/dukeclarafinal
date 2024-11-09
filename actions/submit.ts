@@ -5,6 +5,7 @@ import { z } from "zod";
 import drizzleClient from "@/db";
 import { confirmationsTable, presentsTable } from "@/db/schema";
 import { ConfirmationSchema, PresentSchema } from "@/descriptions/zod";
+import { DiscordClient } from "@/lib/discordClient";
 
 const list: string[] = [];
 
@@ -84,6 +85,8 @@ export async function confirmAttendance(
     const validated = ConfirmationSchema.safeParse(data);
     if (!validated.success) throw new Error("Dados inválidos");
 
+    const discord = new DiscordClient();
+
     const { name, coming, adults, children, email, phone, note } =
       validated.data;
 
@@ -98,6 +101,42 @@ export async function confirmAttendance(
         phone,
         note,
       });
+
+    await discord.sendEmbed({
+      title: "Confirmation",
+      color: 0x9dc4f5,
+      fields: [
+        {
+          name: "Name",
+          value: name,
+        },
+        {
+          name: "Coming",
+          value: coming === "true" ? "Yes" : "No",
+        },
+        {
+          name: "Adults",
+          value: adults.toString(),
+        },
+        {
+          name: "Children",
+          value: children.toString(),
+        },
+        {
+          name: "Email",
+          value: email,
+        },
+        {
+          name: "Phone",
+          value: phone,
+        },
+        {
+          name: "Note",
+          value: note ?? "N/A",
+        },
+      ],
+    });
+
     return {
       success: true,
       message: "Presença confirmada com sucesso",
@@ -125,10 +164,25 @@ export async function submitPresent(data: z.infer<typeof PresentSchema>) {
     if (!isPresent) throw new Error("Nome não encontrado na lista");
 
     const db = await drizzleClient();
-
+    const discord = new DiscordClient();
     await db.insert(presentsTable).values({
       name,
       note,
+    });
+
+    await discord.sendEmbed({
+      title: "Present",
+      color: 0x9dc4f5,
+      fields: [
+        {
+          name: "Name",
+          value: name,
+        },
+        {
+          name: "Note",
+          value: note ?? "N/A",
+        },
+      ],
     });
 
     return {
