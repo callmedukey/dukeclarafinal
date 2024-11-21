@@ -71,8 +71,9 @@ const list: string[] = [];
   "Gabriel Molina",
   "Virginia",
 ].forEach((str) => {
-  const lowerCased = str.toLowerCase();
-  list.push(lowerCased);
+  const splitName = str.split(" ");
+  const lowerCased = splitName.map((word) => word.toLowerCase());
+  list.push(...lowerCased);
 });
 
 const uniqueList = [...new Set(list)];
@@ -118,7 +119,7 @@ export async function submitPresent(data: z.infer<typeof PresentSchema>) {
 
     const { name, note } = validated.data;
 
-    const splitName = name.toLowerCase();
+    const splitName = name.split(" ");
 
     const isPresent = uniqueList.some((word) => splitName.includes(word));
 
