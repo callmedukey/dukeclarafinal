@@ -71,6 +71,15 @@ const list: string[] = [];
   "Hiandra Pinheiro",
   "Gabriel Molina",
   "Virgínia Garrido",
+  "Gleide Drummond",
+  "Simone Moreira Lima",
+  "Margaret Muniz",
+  "Isabel Villas",
+  "Georgina e Joaquim Guerra",
+  "Ernandi de Faria",
+  "Marcelo de Faria",
+  "Erica",
+  "José Ribeiro",
 ].forEach((str) => {
   const lowerCased = str.toLowerCase();
   list.push(lowerCased);
