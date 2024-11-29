@@ -166,7 +166,7 @@ export async function submitPresent(data: z.infer<typeof PresentSchema>) {
 
     const { name, note } = validated.data;
 
-    const splitName = name.toLowerCase();
+    const splitName = name.toLowerCase().split(" ");
 
     const isPresent = uniqueList.some((word) => splitName.includes(word));
 
