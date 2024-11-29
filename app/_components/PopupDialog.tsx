@@ -11,10 +11,33 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 
-const PopupDialog = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) => {
+const PopupDialog = ({
+  isOpen,
+  onClose,
+}: {
+  isOpen: boolean;
+  onClose: () => void;
+}) => {
   const copyCPF = () => {
-    navigator.clipboard.writeText("043.930.355-93");
-    toast.success("CPF copiado com sucesso!");
+    try {
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText("043.930.355-93");
+        toast.success("CPF copiado com sucesso!");
+      } else {
+        // Fallback for browsers without clipboard API
+        const textarea = document.createElement("textarea");
+        textarea.value = "043.930.355-93";
+        textarea.style.position = "fixed"; // Avoid scrolling to bottom
+        document.body.appendChild(textarea);
+        textarea.focus();
+        textarea.select();
+        document.execCommand("copy");
+        document.body.removeChild(textarea);
+        toast.success("CPF copiado com sucesso!");
+      }
+    } catch {
+      toast.error("Não foi possível copiar o CPF!");
+    }
   };
   return (
     <Dialog open={isOpen}>
