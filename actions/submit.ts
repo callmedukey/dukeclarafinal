@@ -167,8 +167,11 @@ export async function submitPresent(data: z.infer<typeof PresentSchema>) {
     const { name, note } = validated.data;
 
     const splitName = name.toLowerCase().split(" ");
-
-    const isPresent = uniqueList.some((word) => splitName.includes(word));
+    const isPresent = uniqueList.some(
+      (word) =>
+        splitName.includes(word.trim().split(" ")[0]) ||
+        splitName.includes(word.trim().split(" ")[1])
+    );
 
     if (!isPresent) throw new Error("Nome não encontrado na lista");
 
